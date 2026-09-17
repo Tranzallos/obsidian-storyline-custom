@@ -43,5 +43,8 @@
     "markdown-it-emoji": "^3.0.0",
     "markdown-it-mark": "^4.0.0",
     "pdf-lib": "^1.17.1"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
   }
 }
