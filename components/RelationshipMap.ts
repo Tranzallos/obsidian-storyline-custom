@@ -249,14 +249,6 @@ export class RelationshipMap {
                     });
                 }
             }
-
-            // Legacy free-text family/background field may contain relatives by name.
-            if (char.family) {
-                for (const name of this.parseNames(char.family)) {
-                    this.ensureNode(nodeMap, name);
-                    edgeList.push({ source: fromKey, target: name.toLowerCase(), type: 'family' });
-                }
-            }
         }
 
         // Deduplicate two-way edges while keeping opposite one-way edges.
