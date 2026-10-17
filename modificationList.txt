@@ -1,0 +1,31 @@
+Conditions
+	- Before/after object (by x days / y months / z years)
+
+Timeline object
+	- Event vector
+
+Base object
+	- Date
+	- Date Upper Bound
+	- Date Lower Bound
+	- Conditions
+	- (virtual) Draw UI
+	- Name
+
+Events and characters are derived from base and only add visual and textual flavor
+
+Timeline view is a table with character columns and event rows with character ages as the data
+	- Reordering characters just changes display order; no new math
+	- Reordering events causes character ages to recaulculate
+	- Reordering can be done with drag/drop and manual date entry (for events)
+	- Characters characters and events can be moved together in a group via shift and ctrl clicks
+		- Shift moves as a block
+		- Ctrl forms a block, collapsing in gaps created by removing the column/row
+		- Moving events will auto-update dates to the first valid date. Grouped events will maintain their relative gap unless it is not possible; they then adjust to the first valid date
+	- Moving an event automatically updates everything dependent on it (both actual values and positions) to be valid if possible
+	- Upper/Lower bounds for events are color-coded (green is valid date, red is invalid)
+	- Double clicking a row or column header opens the corresponding object details
+	- Rows are alternating colors
+
+When conditions are added to an event, the bounds are updated and there is a warning if the conditions are unsolvable or cause a circular dependency
+	Warnings may be bypassed and will color invalid events
