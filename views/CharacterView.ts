@@ -597,11 +597,16 @@ export class CharacterView extends ItemView {
         }
 
         // Name
-        card.createEl('h4', { text: char.name });
+        let nameEl = char.name;
+        nameEl = char.age ? `${nameEl}, ${char.age}` : nameEl;
+        card.createEl('h4', { text: nameEl });
 
         // Short description snippet — per-character tagline field selector, with auto fallback
         const taglineKey = char.tagline; // a field key like 'personality', 'occupation', etc.
-        const autoSnippet = char.personality || char.occupation || getRoleDisplay(char.role) || '';
+        let defaultSnippet = '';
+        defaultSnippet = char.occupation ? char.occupation : defaultSnippet;
+        defaultSnippet = char.personality ? (defaultSnippet ? defaultSnippet + ', ' : '') + char.personality : defaultSnippet;
+        const autoSnippet = defaultSnippet;
         // Issue #233 discussion — support custom (universal) fields as the
         // tagline source. Universal-field tagline keys are stored with the
         // `uf:` prefix so they never collide with built-in field keys.
@@ -1471,7 +1476,7 @@ export class CharacterView extends ItemView {
         if (field.key === 'tagline') {
             // Tagline is a dropdown that picks which other field to show on the card
             const select = row.createEl('select', { cls: 'character-field-input dropdown' });
-            select.createEl('option', { text: 'Auto (personality → occupation → role)', value: '' });
+            select.createEl('option', { text: 'Auto (occupation, personality)', value: '' });
             const taglineOptions: { key: string; label: string }[] = [];
             for (const cat of CHARACTER_CATEGORIES) {
                 for (const f of cat.fields) {

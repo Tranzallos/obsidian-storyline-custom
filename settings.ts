@@ -691,7 +691,7 @@ export interface SceneCardsSettings {
     // e.g. { "sven": "Sven Andersson" } — user-defined via "Link to…" in Characters view
     characterAliases: Record<string, string>;
 
-    // Which character field to show as the tagline on cards ('auto' = personality → occupation → age)
+    // Which character field to show as the tagline on cards ('auto' = occupation, personality)
     characterTaglineField: string;
 
     // Character names to hide from the "no profile yet" list (lowercased)
